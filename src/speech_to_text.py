@@ -1,3 +1,4 @@
+
 import sounddevice as sd
 from scipy.io.wavfile import write
 from groq import Groq
@@ -39,6 +40,9 @@ def transcribe_audio():
 
     print("\nRecognized Text:")
     print(transcription)
+
+    # Return recognized text to the voice assistant
+    return transcription
 
 
 if __name__ == "__main__":
