@@ -1,21 +1,34 @@
-
 import pyttsx3
-
+import markdown
+from bs4 import BeautifulSoup
 
 engine = pyttsx3.init()
 
-# Set speaking speed
 engine.setProperty("rate", 175)
-
-# Set volume (0.0 to 1.0)
 engine.setProperty("volume", 1.0)
+
+
+def clean_text_for_speech(text):
+
+    # Convert Markdown into HTML
+    html = markdown.markdown(text)
+
+    # Extract plain text from HTML
+    soup = BeautifulSoup(html, "html.parser")
+
+    # Get only readable text
+    clean_text = soup.get_text(separator=" ")
+
+    return clean_text
 
 
 def speak_text(text):
 
+    clean_text = clean_text_for_speech(text)
+
     print("\nSpeaking...")
 
-    engine.say(text)
+    engine.say(clean_text)
     engine.runAndWait()
 
 
