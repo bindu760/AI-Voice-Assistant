@@ -29,6 +29,7 @@ def record_audio():
     print("Recording saved.")
 
 
+
 def transcribe_audio():
     with open("recording.wav", "rb") as audio_file:
         transcription = client.audio.transcriptions.create(
@@ -39,6 +40,9 @@ def transcribe_audio():
 
     print("\nRecognized Text:")
     print(transcription)
+
+    return transcription
+
 
 
 if __name__ == "__main__":
